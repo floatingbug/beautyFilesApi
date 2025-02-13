@@ -1,3 +1,4 @@
+const {randomUUID} = require("crypto");
 const {sendServerError} = require("../../helper/sendServerError");
 
 
@@ -12,12 +13,20 @@ async function handleRequest(param){
 	const {req, res, store} = param;
 
 	try {
-		const documents = req.body;
+		req.body.customerId = randomUUID();
+		req.body.userId = req.user.userId;
+		const documents = [req.body];
+		await store.insertDocuments({
+			documents,
+			collection: "stammdaten"
+		});
 	}
 	catch(error) {
 		console.log(error);
 		return sendServerError({res});
 	}
+
+	res.status(200).json({success: true, errors: []});
 }
 
 
