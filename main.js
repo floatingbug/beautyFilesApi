@@ -4,6 +4,7 @@ const {createStore} = require("./src//store/createStore");
 const store = createStore();
 const api = createApi({store});
 const httpServer = require("http").createServer(api);
+const PORT = process.env.PORT
 
 
-httpServer.listen(3000);
+httpServer.listen(PORT);
