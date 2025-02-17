@@ -29,18 +29,23 @@ async function insertDocuments(param){
 
 
 async function getDocuments(param){
-	const {query, collection} = param;
+	const {query, collection, skip, limit} = param;
 	const coll = this.db.collection(collection);
 	
 	try{
-		const result = await coll.find(query);
-		const customer = await result.toArray();
+		let result = coll.find(query);
+		
+		if(skip) result = result.skip(skip);
+		if(limit) result = result.limit(limit);
 
-		return customer;
+		const documents = await result.toArray();
+
+		return documents;
 	}
 	catch(error){
 		throw error;
 	}
+
 }
 
 

@@ -11,10 +11,13 @@ function createCustomer({store}){
 
 async function handleRequest(param){
 	const {req, res, store} = param;
+	const customerId = randomUUID();
+
 
 	try {
-		req.body.customerId = randomUUID();
+		req.body.customerId = customerId;
 		req.body.userId = req.user.userId;
+		req.body.kundengruppe = "neukunde";
 		const documents = [req.body];
 		await store.insertDocuments({
 			documents,
@@ -26,7 +29,7 @@ async function handleRequest(param){
 		return sendServerError({res});
 	}
 
-	res.status(200).json({success: true, errors: []});
+	res.status(200).json({success: true, customerId, errors: []});
 }
 
 
