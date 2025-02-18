@@ -2,7 +2,6 @@ function validateCreateCustomer(req, res, next) {
     const {vorname, name, straße, hausnummer, wohnort, telefon, geburtsdatum} = req.body;
     const errors = [];                                                                                                                            
 
-
 	//allowed fields
 	const allowedFields = ["vorname", "name", "straße", "wohnort", "telefon", "geburtsdatum", "hausnummer"];
 

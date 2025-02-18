@@ -167,6 +167,7 @@
   },
   "active": "77698a443f257ec9",
   "lastOpenFiles": [
+    "src/routes/createCustomer/middleware/validateCreateCustomer.js~",
     "src/routes/findCustomer/findCustomer.js~",
     "src/routes/findCustomer/4913",
     "src/routes/findCustomer/middleware/validateFindCustomer.js~",
@@ -177,7 +178,6 @@
     "src/routes/findCustomer/middleware/validateFindCustomer.js",
     "src/routes/findCustomer/middleware",
     "src/routes/findCustomer",
-    "src/routes/createCustomer/createCustomer.js~",
     "README.md",
     "node_modules/cors/README.md",
     "node_modules/object-assign/readme.md",
