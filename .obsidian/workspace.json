@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "28a251f3f8bd7eb0",
+        "id": "289d1e77fbf967ab",
         "type": "tabs",
         "children": [
           {
-            "id": "77698a443f257ec9",
+            "id": "040bf92d4a1d43f9",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "README.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "README"
+              "title": "New tab"
             }
           }
         ]
@@ -165,20 +161,19 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "77698a443f257ec9",
+  "active": "040bf92d4a1d43f9",
   "lastOpenFiles": [
+    "README.md",
+    "src/createApi.js~",
+    "src/routes/changeCoreData/changeCoreData.js~",
+    "src/routes/changeCoreData/changeCoreData.js",
+    "src/routes/changeCoreData/changeCustomer.js",
+    "src/routes/changeCoreData",
+    "src/routes/changeCustomer/changeCustomer.js~",
+    "src/routes/changeCustomer/changeCustomer.js",
+    "src/routes/changeCustomer",
     "src/routes/createCustomer/middleware/validateCreateCustomer.js~",
     "src/routes/findCustomer/findCustomer.js~",
-    "src/routes/findCustomer/4913",
-    "src/routes/findCustomer/middleware/validateFindCustomer.js~",
-    "src/createApi.js~",
-    "src/store/createStore.js~",
-    "src/routes/customer/middleware/validateGetCoreData.js~",
-    "src/routes/findCustomer/findCustomer.js",
-    "src/routes/findCustomer/middleware/validateFindCustomer.js",
-    "src/routes/findCustomer/middleware",
-    "src/routes/findCustomer",
-    "README.md",
     "node_modules/cors/README.md",
     "node_modules/object-assign/readme.md",
     "node_modules/cors/HISTORY.md",

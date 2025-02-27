@@ -16,6 +16,7 @@ async function handleRequest(param){
 		userId: req.user.userId,
 	};
 
+
 	//set query for db request
 	if(customerId) query.customerId = customerId;
 	if(name) query.name = {$regex: name, $options: "i"};

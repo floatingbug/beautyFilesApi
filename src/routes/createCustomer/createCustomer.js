@@ -1,5 +1,8 @@
 const {randomUUID} = require("crypto");
 const {sendServerError} = require("../../helper/sendServerError");
+const {skinData} = require("./data/skinData");
+const {selfApplicationData} = require("./data/selfApplicationData");
+const {protocolData} = require("./data/protocolData");
 
 
 function createCustomer({store}){
@@ -14,17 +17,84 @@ async function handleRequest(param){
 	const customerId = randomUUID();
 
 
+	//add collection stammdaten
 	try {
-		req.body.customerId = customerId;
-		req.body.userId = req.user.userId;
-		req.body.kundengruppe = "neukunde";
-		const documents = [req.body];
+		const documents = [
+			{
+				customerId,
+				userId: req.user.userId,
+				...req.body,
+			}
+		];
+
 		await store.insertDocuments({
 			documents,
 			collection: "stammdaten"
 		});
 	}
 	catch(error) {
+		console.log(error);
+		return sendServerError({res});
+	}
+
+	//add collection: hauteigenschaften
+	try{
+		const documents = [
+			{
+				customerId,
+				userId: req.user.userId,
+				...skinData,
+			}
+		];
+
+		await store.insertDocuments({
+			documents,
+			collection: "hauteigenschaften",
+		});
+	}
+	catch(error){
+		console.log(error);
+		return sendServerError({res});
+	}
+
+	
+	//add collection: eigenanwendung 
+	try{
+		const documents = [
+			{
+				customerId,
+				userId: req.user.userId,
+				...selfApplicationData,
+			}
+		];
+
+		await store.insertDocuments({
+			documents,
+			collection: "eigenanwendung",
+		});
+	}
+	catch(error){
+		console.log(error);
+		return sendServerError({res});
+	}
+
+	
+	//add collection: protocoll
+	try{
+		const documents = [
+			{
+				customerId,
+				userId: req.user.userId,
+				...protocolData,
+			}
+		];
+
+		await store.insertDocuments({
+			documents,
+			collection: "protokoll",
+		});
+	}
+	catch(error){
 		console.log(error);
 		return sendServerError({res});
 	}

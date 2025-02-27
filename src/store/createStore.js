@@ -7,6 +7,7 @@ const store = {
 	db,
 	insertDocuments,
 	getDocuments,
+	updateDocument,
 };
 
 
@@ -46,6 +47,22 @@ async function getDocuments(param){
 		throw error;
 	}
 
+}
+
+
+async function updateDocument(param){
+	const {filter, updateDocument, collection} = param;
+	const coll = this.db.collection(collection);
+
+
+	try{
+		const result = await coll.updateOne(filter, updateDocument);
+
+		return result;
+	}
+	catch(error){
+		throw error;
+	}
 }
 
 

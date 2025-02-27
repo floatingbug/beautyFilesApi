@@ -3,11 +3,11 @@ function validateCreateCustomer(req, res, next) {
     const errors = [];                                                                                                                            
 
 	//allowed fields
-	const allowedFields = ["vorname", "name", "straße", "wohnort", "telefon", "geburtsdatum", "hausnummer"];
+	const allowedFields = ["vorname", "name", "straße", "wohnort", "telefon", "geburtsdatum", "hausnummer", "kundengruppe"];
 
 	//only 7 fields are allowed
 	const keys = Object.keys(req.body);
-	if (keys.length > 7) {
+	if (keys.length > 8) {
 		errors.push({ message: "Zu viele Eigenschaften." });
 	}
 
