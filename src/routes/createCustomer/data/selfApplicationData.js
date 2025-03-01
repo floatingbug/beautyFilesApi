@@ -12,7 +12,7 @@ const selfApplicationData = {
 	},
 	maquillage: {
 		foundation: "",
-		"kayal:/eyliner": "",
+		"kayal/eyliner": "",
 		"eye-shadow": "",
 		augenbrauenstift: "",
 		rouge: "",
@@ -28,7 +28,9 @@ const selfApplicationData = {
 		ernährung: "",
 		gesamtübungen: "",
 	},
-	notizen: "",
+	notizen: {
+		notiz: "",
+	}
 };
 
 

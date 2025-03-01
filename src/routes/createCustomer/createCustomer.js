@@ -64,7 +64,7 @@ async function handleRequest(param){
 			{
 				customerId,
 				userId: req.user.userId,
-				...selfApplicationData,
+				selfApplications: selfApplicationData,
 			}
 		];
 
@@ -79,7 +79,7 @@ async function handleRequest(param){
 	}
 
 	
-	//add collection: protocoll
+	//add collection: protocol
 	try{
 		const documents = [
 			{

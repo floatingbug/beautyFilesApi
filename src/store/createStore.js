@@ -32,6 +32,7 @@ async function insertDocuments(param){
 async function getDocuments(param){
 	const {query, collection, skip, limit} = param;
 	const coll = this.db.collection(collection);
+
 	
 	try{
 		let result = coll.find(query);

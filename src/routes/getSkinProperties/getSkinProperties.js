@@ -8,12 +8,14 @@ function getSkinProperties({store}){
 async function handleRequest(param){
 	const {req, res, store} = param;
 	const customerId = req.query.customerId;
+	const userId = req.user.userId;
 
 
 	try{
 		const hauteigenschaften = await store.getDocuments({
 			query: {
 				customerId,
+				userId,
 			},
 			collection: "hauteigenschaften",
 		});

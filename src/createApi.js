@@ -15,6 +15,10 @@ const {validateFindCustomer} = require("./routes/findCustomer/middleware/validat
 const {changeCoreData} = require("./routes/changeCoreData/changeCoreData");
 const {getSkinProperties} = require("./routes/getSkinProperties/getSkinProperties");
 const {changeSkinProperties} = require("./routes/changeSkinProperties/changeSkinProperties");
+const {getSelfApplication} = require("./routes/getSelfApplication/getSelfApplication");
+const {changeSelfApplication} = require("./routes/changeSelfApplication/changeSelfApplication");
+const {getProtocol} = require("./routes/getProtocol/getProtocol");
+const {addProtocol} = require("./routes/addProtocol/addProtocol");
 const cors = require("cors");
 
 
@@ -30,12 +34,16 @@ function createApi({store}){
 	api.get("/get-core-data", validateUser({jwt}), validateGetCoreData, getCoreData({store}));
 	api.get("/find-customer", validateUser({jwt}), validateFindCustomer, findCustomer({store}));
 	api.get("/get-skin-properties", validateUser({jwt}), getSkinProperties({store}));
+	api.get("/get-self-application", validateUser({jwt}), getSelfApplication({store}));
+	api.get("/get-protocol", validateUser({jwt}), getProtocol({store}));
 
 	api.post("/sign-up", validateSignUp, signUp({store}));
 	api.post("/sign-in", validateSignIn, signIn({store, jwt}));
 	api.post("/create-customer", validateUser({jwt}), validateCreateCustomer, createCustomer({store}));
 	api.post("/update-core-data", changeCoreData({store}));
-	api.post("/update-skin-properties", changeSkinProperties({store}));
+	api.post("/update-skin-properties", validateUser({jwt}), changeSkinProperties({store}));
+	api.post("/update-self-application", validateUser({jwt}), changeSelfApplication({store}));
+	api.post("/add-protocol", validateUser({jwt}), addProtocol({store}));
 
 	return api;
 }
