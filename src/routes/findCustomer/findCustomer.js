@@ -56,6 +56,8 @@ async function handleRequest(param){
 		query = {$or: orConditions};
 	}
 
+	query.userId = req.user.userId;
+
 	try{
 		const customer = await store.getDocuments({query, collection});
 

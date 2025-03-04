@@ -1,8 +1,7 @@
 const {sendServerError} = require("../../helper/sendServerError");
-const {randomUUID} = require("crypto");
 
 
-function addProtocol({store}){
+function changeProtocolEntry({store}){
 	return (req, res) => {
 		handleRequest({req, res, store});
 	};
@@ -12,22 +11,21 @@ function addProtocol({store}){
 async function handleRequest(param){
 	const {req, res, store} = param;
 	const collection = "protokoll";
+
 	const filter = {
-		customerId: req.body.customerId,
-		userId: req.user.userId,
+		"entries.entryId": req.body.entryId,
 	};
-	const updateDocument = {
-		$push: {
-			entries: {
-				entryId: randomUUID(),
-				...req.body.protocol,
-			}
-		}
-	};
+
+	const updateDocument = Object.entries(req.body.changes)
+		.reduce((accumulator, [key, value]) => {
+			accumulator.$set[`entries.$.${key}`] = value;
+
+			return accumulator;
+		}, {$set: {}});
 
 
 	try{
-		const result = await store.updateDocument({filter, updateDocument, collection});
+		const result = await store.updateDocument({collection, filter, updateDocument});
 
 		res.status(200).json({success: true, errors: []});
 	}
@@ -35,7 +33,7 @@ async function handleRequest(param){
 		console.log(error);
 		return sendServerError({res});
 	}
-};
+}
 
 
-module.exports = {addProtocol};
+module.exports = {changeProtocolEntry};

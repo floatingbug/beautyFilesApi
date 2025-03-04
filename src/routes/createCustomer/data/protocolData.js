@@ -1,5 +1,5 @@
 const protocolData = {
-	protocols: [],
+	entries: [],
 };
 
 

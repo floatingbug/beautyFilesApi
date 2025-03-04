@@ -8,6 +8,7 @@ const store = {
 	insertDocuments,
 	getDocuments,
 	updateDocument,
+	deleteDocument,
 };
 
 
@@ -58,6 +59,22 @@ async function updateDocument(param){
 
 	try{
 		const result = await coll.updateOne(filter, updateDocument);
+
+		return result;
+	}
+	catch(error){
+		throw error;
+	}
+}
+
+
+async function deleteDocument(param){
+	const {collection, document} = param;
+	const coll = this.db.collection(collection);
+
+
+	try{
+		const result = await coll.deleteOne(document);
 
 		return result;
 	}

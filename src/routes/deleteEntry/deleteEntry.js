@@ -1,8 +1,7 @@
 const {sendServerError} = require("../../helper/sendServerError");
-const {randomUUID} = require("crypto");
 
 
-function addProtocol({store}){
+function deleteEntry({store}){
 	return (req, res) => {
 		handleRequest({req, res, store});
 	};
@@ -13,16 +12,14 @@ async function handleRequest(param){
 	const {req, res, store} = param;
 	const collection = "protokoll";
 	const filter = {
-		customerId: req.body.customerId,
 		userId: req.user.userId,
 	};
 	const updateDocument = {
-		$push: {
+		$pull: {
 			entries: {
-				entryId: randomUUID(),
-				...req.body.protocol,
-			}
-		}
+				entryId: req.body.entryId,
+			},
+		},
 	};
 
 
@@ -35,7 +32,7 @@ async function handleRequest(param){
 		console.log(error);
 		return sendServerError({res});
 	}
-};
+}
 
 
-module.exports = {addProtocol};
+module.exports = {deleteEntry};

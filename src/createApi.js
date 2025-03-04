@@ -19,6 +19,8 @@ const {getSelfApplication} = require("./routes/getSelfApplication/getSelfApplica
 const {changeSelfApplication} = require("./routes/changeSelfApplication/changeSelfApplication");
 const {getProtocol} = require("./routes/getProtocol/getProtocol");
 const {addProtocol} = require("./routes/addProtocol/addProtocol");
+const {deleteEntry} = require("./routes/deleteEntry/deleteEntry");
+const {changeProtocolEntry} = require("./routes/changeProtocolEntry/changeProtocolEntry");
 const cors = require("cors");
 
 
@@ -44,6 +46,9 @@ function createApi({store}){
 	api.post("/update-skin-properties", validateUser({jwt}), changeSkinProperties({store}));
 	api.post("/update-self-application", validateUser({jwt}), changeSelfApplication({store}));
 	api.post("/add-protocol", validateUser({jwt}), addProtocol({store}));
+	api.post("/update-protocol-entry", validateUser({jwt}), changeProtocolEntry({store}));
+
+	api.delete("/delete-entry", validateUser({jwt}), deleteEntry({store}));
 
 	return api;
 }

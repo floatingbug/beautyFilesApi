@@ -19,12 +19,11 @@ async function handleRequest(param){
 
 
 	try{
-		const fetchedProtocol = await store.getDocuments({query, collection});
-		const protocol = fetchedProtocol[0].protocols;
+		const fetchedEntries= await store.getDocuments({query, collection});
+		const entries = fetchedEntries[0].entries;
 
-		console.log(protocol);
 
-		res.status(200).json({success: true, protocol, errors: []});
+		res.status(200).json({success: true, entries, errors: []});
 	}
 	catch(error){
 		console.log(error);
